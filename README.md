@@ -11,6 +11,18 @@ Summary: Multi-user server for Jupyter notebooks
 
 
 
+Current build status
+====================
+
+Linux: [![Circle CI](https://circleci.com/gh/conda-forge/jupyterhub-feedstock.svg?style=shield)](https://circleci.com/gh/conda-forge/jupyterhub-feedstock)
+OSX: [![TravisCI](https://travis-ci.org/conda-forge/jupyterhub-feedstock.svg?branch=master)](https://travis-ci.org/conda-forge/jupyterhub-feedstock)
+Windows: ![](https://cdn.rawgit.com/conda-forge/conda-smithy/90845bba35bec53edac7a16638aa4d77217a3713/conda_smithy/static/disabled.svg)
+
+Current release info
+====================
+Version: [![Anaconda-Server Badge](https://anaconda.org/conda-forge/jupyterhub/badges/version.svg)](https://anaconda.org/conda-forge/jupyterhub)
+Downloads: [![Anaconda-Server Badge](https://anaconda.org/conda-forge/jupyterhub/badges/downloads.svg)](https://anaconda.org/conda-forge/jupyterhub)
+
 Installing jupyterhub
 =====================
 
@@ -31,7 +43,6 @@ It is possible to list all of the versions of `jupyterhub` available on your pla
 ```
 conda search jupyterhub --channel conda-forge
 ```
-
 
 
 About conda-forge
@@ -67,18 +78,6 @@ Terminology
 
 **conda-forge** - the place where the feedstock and smithy live and work to
                   produce the finished article (built conda distributions)
-
-Current build status
-====================
-
-Linux: [![Circle CI](https://circleci.com/gh/conda-forge/jupyterhub-feedstock.svg?style=shield)](https://circleci.com/gh/conda-forge/jupyterhub-feedstock)
-OSX: [![TravisCI](https://travis-ci.org/conda-forge/jupyterhub-feedstock.svg?branch=master)](https://travis-ci.org/conda-forge/jupyterhub-feedstock)
-Windows: ![](https://cdn.rawgit.com/conda-forge/conda-smithy/90845bba35bec53edac7a16638aa4d77217a3713/conda_smithy/static/disabled.svg)
-
-Current release info
-====================
-Version: [![Anaconda-Server Badge](https://anaconda.org/conda-forge/jupyterhub/badges/version.svg)](https://anaconda.org/conda-forge/jupyterhub)
-Downloads: [![Anaconda-Server Badge](https://anaconda.org/conda-forge/jupyterhub/badges/downloads.svg)](https://anaconda.org/conda-forge/jupyterhub)
 
 
 Updating jupyterhub-feedstock
