@@ -21,7 +21,7 @@ requirements:
   run:
     - python
     - alembic
-    - async_generator >=1.8  # [py<36]
+    - async_generator >=1.8
     - configurable-http-proxy
     - jinja2
     - pamela  # [not win]
