@@ -14,14 +14,16 @@ Summary: Multi-user server for Jupyter notebooks
 Current build status
 ====================
 
-Linux: [![Circle CI](https://circleci.com/gh/conda-forge/jupyterhub-feedstock.svg?style=shield)](https://circleci.com/gh/conda-forge/jupyterhub-feedstock)
-OSX: [![TravisCI](https://travis-ci.org/conda-forge/jupyterhub-feedstock.svg?branch=master)](https://travis-ci.org/conda-forge/jupyterhub-feedstock)
-Windows: ![](https://cdn.rawgit.com/conda-forge/conda-smithy/90845bba35bec53edac7a16638aa4d77217a3713/conda_smithy/static/disabled.svg)
+[![Linux](https://img.shields.io/circleci/project/github/conda-forge/jupyterhub-feedstock/master.svg?label=Linux)](https://circleci.com/gh/conda-forge/jupyterhub-feedstock)
+[![OSX](https://img.shields.io/travis/conda-forge/jupyterhub-feedstock/master.svg?label=macOS)](https://travis-ci.org/conda-forge/jupyterhub-feedstock)
+[![Windows](https://img.shields.io/appveyor/ci/conda-forge/jupyterhub-feedstock/master.svg?label=Windows)](https://ci.appveyor.com/project/conda-forge/jupyterhub-feedstock/branch/master)
 
 Current release info
 ====================
-Version: [![Anaconda-Server Badge](https://anaconda.org/conda-forge/jupyterhub/badges/version.svg)](https://anaconda.org/conda-forge/jupyterhub)
-Downloads: [![Anaconda-Server Badge](https://anaconda.org/conda-forge/jupyterhub/badges/downloads.svg)](https://anaconda.org/conda-forge/jupyterhub)
+
+| Name | Downloads | Version | Platforms |
+| --- | --- | --- | --- |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-jupyterhub-green.svg)](https://anaconda.org/conda-forge/jupyterhub) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/jupyterhub.svg)](https://anaconda.org/conda-forge/jupyterhub) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/jupyterhub.svg)](https://anaconda.org/conda-forge/jupyterhub) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/jupyterhub.svg)](https://anaconda.org/conda-forge/jupyterhub) |
 
 Installing jupyterhub
 =====================
