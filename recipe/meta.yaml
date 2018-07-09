@@ -16,11 +16,11 @@ build:
   script: python -m pip install --no-deps --ignore-installed .
 
 requirements:
-  build:
+  host:
     - python
     - pip
   run:
-    - python
+    - python >=3.5
     - alembic
     - async_generator >=1.8
     - configurable-http-proxy
@@ -35,7 +35,7 @@ requirements:
     - sqlalchemy >=1.1
     - traitlets >=4.3.2
     - tornado >=5.0
-    
+
 test:
   imports:
     - jupyterhub
