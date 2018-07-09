@@ -11,6 +11,7 @@ source:
 
 build:
   number: 0
+  noarch: python
   skip: true  # [py<35]
   script: python -m pip install --no-deps --ignore-installed .
 
@@ -44,6 +45,8 @@ test:
     - jupyterhub.app
   commands:
     - python -m jupyterhub --help-all
+    - test -f ${PREFIX}/share/jupyterhub/static/css/style.min.css  # [unix]
+    - test -f ${PREFIX}/share/jupyterhub/templates/page.html  # [unix]
 
 about:
   home: https://github.com/jupyterhub/jupyterhub
