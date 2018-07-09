@@ -14,9 +14,7 @@ Summary: Multi-user server for Jupyter notebooks
 Current build status
 ====================
 
-[![Linux](https://img.shields.io/circleci/project/github/conda-forge/jupyterhub-feedstock/master.svg?label=Linux)](https://circleci.com/gh/conda-forge/jupyterhub-feedstock)
-[![OSX](https://img.shields.io/travis/conda-forge/jupyterhub-feedstock/master.svg?label=macOS)](https://travis-ci.org/conda-forge/jupyterhub-feedstock)
-[![Windows](https://img.shields.io/appveyor/ci/conda-forge/jupyterhub-feedstock/master.svg?label=Windows)](https://ci.appveyor.com/project/conda-forge/jupyterhub-feedstock/branch/master)
+All platforms: ![noarch disabled](https://img.shields.io/badge/noarch-disabled-lightgrey.svg)
 
 Current release info
 ====================
