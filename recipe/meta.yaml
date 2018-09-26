@@ -1,4 +1,4 @@
-{% set version = "0.9.3" %}
+{% set version = "0.9.4" %}
 
 package:
   name: jupyterhub
@@ -7,7 +7,7 @@ package:
 source:
   fn: jupyterhub-{{ version }}.tar.gz
   url: https://pypi.io/packages/source/j/jupyterhub/jupyterhub-{{ version }}.tar.gz
-  sha256: 653a33d32ca70774440c9e8b9f219d7b56ce4f6905dcca949c9ffa6f26ebfce8
+  sha256: 7848bbb299536641a59eb1977ec3c7c95d931bace4a2803d7e9b28b9256714da
 
 build:
   number: 0
