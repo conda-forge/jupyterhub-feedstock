@@ -1,4 +1,4 @@
-{% set version = "0.9.6" %}
+{% set version = "1.0.0" %}
 
 package:
   name: jupyterhub
@@ -7,7 +7,7 @@ package:
 source:
   fn: jupyterhub-{{ version }}.tar.gz
   url: https://pypi.io/packages/source/j/jupyterhub/jupyterhub-{{ version }}.tar.gz
-  sha256: bbe9dcf7c001f1bb1c8e0ea6001e2322ccf889ee94b177a773bbd5d57cd18f11
+  sha256: 33541a515a041b9a518ca057c1c4ab4215a7450fdddc206401713ee8137fa67f
 
 build:
   number: 0
@@ -22,19 +22,20 @@ requirements:
     - python
     - alembic
     - async_generator >=1.8
+    - certipy>=0.1.2
     - configurable-http-proxy
     - jinja2
+    - oauthlib>=3.0
     - pamela  # [not win]
     - prometheus_client >=0.0.21
     - psutil  # [win]
     - pycurl
     - python-dateutil
-    - python-oauth2 >=1.0
     - requests
     - sqlalchemy >=1.1
-    - traitlets >=4.3.2
     - tornado >=5.0
-    
+    - traitlets >=4.3.2
+
 test:
   imports:
     - jupyterhub
