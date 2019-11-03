@@ -22,11 +22,11 @@ requirements:
     - python
     - alembic
     - async_generator >=1.8
-    - certipy>=0.1.2
+    - certipy >=0.1.2
     - configurable-http-proxy
     - entrypoints
     - jinja2
-    - oauthlib>=3.0
+    - oauthlib >=3.0
     - pamela  # [not win]
     - prometheus_client >=0.0.21
     - psutil  # [win]
