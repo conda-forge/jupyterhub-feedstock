@@ -26,6 +26,7 @@ requirements:
     - configurable-http-proxy
     - entrypoints
     - jinja2
+    - jupyter_telemetry
     - oauthlib >=3.0
     - pamela  # [not win]
     - prometheus_client >=0.0.21
