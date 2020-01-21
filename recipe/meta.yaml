@@ -1,4 +1,4 @@
-{% set version = "1.0.0" %}
+{% set version = "1.1.0" %}
 
 package:
   name: jupyterhub
@@ -7,12 +7,12 @@ package:
 source:
   fn: jupyterhub-{{ version }}.tar.gz
   url: https://pypi.io/packages/source/j/jupyterhub/jupyterhub-{{ version }}.tar.gz
-  sha256: 33541a515a041b9a518ca057c1c4ab4215a7450fdddc206401713ee8137fa67f
+  sha256: 852a70225a03abd631b36a207f3ffdf69326a0db4cef539825fde39ec1b713d7
 
 build:
   number: 0
   skip: true  # [py<35]
-  script: python -m pip install --no-deps --ignore-installed .
+  script: {{ PYTHON }} -m pip install . --no-deps -vv
 
 requirements:
   build:
@@ -26,6 +26,7 @@ requirements:
     - configurable-http-proxy
     - entrypoints
     - jinja2
+    - jupyter_telemetry
     - oauthlib >=3.0
     - pamela  # [not win]
     - prometheus_client >=0.0.21
