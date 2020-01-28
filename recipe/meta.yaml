@@ -1,7 +1,7 @@
 {% set version = "1.1.0" %}
 
 package:
-  name: jupyterhub
+  name: jupyterhub-feedstock
   version: {{ version }}
 
 source:
@@ -10,43 +10,66 @@ source:
   sha256: 852a70225a03abd631b36a207f3ffdf69326a0db4cef539825fde39ec1b713d7
 
 build:
-  number: 0
+  number: 1
   skip: true  # [py<35]
-  script: {{ PYTHON }} -m pip install . --no-deps -vv
 
 requirements:
-  build:
-    - python
-    - pip
-  run:
-    - python
-    - alembic
-    - async_generator >=1.8
-    - certipy >=0.1.2
-    - configurable-http-proxy
-    - entrypoints
-    - jinja2
-    - jupyter_telemetry
-    - oauthlib >=3.0
-    - pamela  # [not win]
-    - prometheus_client >=0.0.21
-    - psutil  # [win]
-    - pycurl
-    - python-dateutil
-    - requests
-    - sqlalchemy >=1.1
-    - tornado >=5.0
-    - traitlets >=4.3.2
+  host:
+    - python >=3.5
 
-test:
-  imports:
-    - jupyterhub
-    - jupyterhub.apihandlers
-    - jupyterhub.handlers
-    - jupyterhub.tests
-    - jupyterhub.app
-  commands:
-    - python -m jupyterhub --help-all
+outputs:
+  - name: jupyterhub-base
+    build:
+      script: python -m pip install . --no-deps -vv
+    requirements:
+      host:
+        - python >=3.5
+        - pip
+      run:
+        - python
+        - alembic
+        - async_generator >=1.8
+        - certipy >=0.1.2
+        - entrypoints
+        - jinja2
+        - jupyter_telemetry
+        - oauthlib >=3.0
+        - pamela  # [not win]
+        - prometheus_client >=0.0.21
+        - psutil  # [win]
+        - pycurl
+        - python-dateutil
+        - requests
+        - sqlalchemy >=1.1
+        - tornado >=5.0
+        - traitlets >=4.3.2
+
+    test:
+      imports:
+        - jupyterhub
+        - jupyterhub.apihandlers
+        - jupyterhub.handlers
+        - jupyterhub.tests
+        - jupyterhub.app
+      commands:
+        - python -m jupyterhub --help-all
+
+  - name: jupyterhub-singleuser
+    requirements:
+      run:
+        - {{ pin_subpackage("jupyterhub-base", exact=True) }}
+        - notebook >=4
+    test:
+      imports:
+        - jupyterhub.singleuser
+      commands:
+        - python -m jupyterhub.singleuser --help-all
+
+  - name: jupyterhub
+    requirements:
+      run:
+        - {{ pin_subpackage("jupyterhub-base", exact=True) }}
+        - configurable-http-proxy
 
 about:
   home: https://github.com/jupyterhub/jupyterhub
