@@ -56,7 +56,10 @@ outputs:
 
   - name: jupyterhub-singleuser
     requirements:
+      host:
+        - python >=3.5
       run:
+        - python
         - {{ pin_subpackage("jupyterhub-base", exact=True) }}
         - notebook >=4
     test:
@@ -67,7 +70,10 @@ outputs:
 
   - name: jupyterhub
     requirements:
+      host:
+        - python >=3.5
       run:
+        - python
         - {{ pin_subpackage("jupyterhub-base", exact=True) }}
         - configurable-http-proxy
 
