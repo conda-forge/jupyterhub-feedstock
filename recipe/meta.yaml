@@ -78,6 +78,12 @@ outputs:
         - python
         - {{ pin_subpackage("jupyterhub-base", exact=True) }}
         - configurable-http-proxy
+    test:
+      imports:
+        - jupyterhub
+      commands:
+        - python -m jupyterhub --help-all
+        - configurable-http-proxy --help
 
 about:
   home: https://github.com/jupyterhub/jupyterhub
