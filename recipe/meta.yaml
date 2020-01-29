@@ -13,10 +13,6 @@ build:
   number: 1
   skip: true  # [py<35]
 
-requirements:
-  host:
-    - python >=3.5
-
 outputs:
   - name: jupyterhub-base
     build:
