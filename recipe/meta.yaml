@@ -77,7 +77,7 @@ outputs:
       run:
         - python
         - {{ pin_subpackage("jupyterhub-base", exact=True) }}
-        - configurable-http-proxy
+        - configurable-http-proxy *=*node12*
     test:
       imports:
         - jupyterhub
@@ -94,3 +94,5 @@ about:
 extra:
   recipe-maintainers:
     - minrk
+    - blink1073
+    - consideRatio
