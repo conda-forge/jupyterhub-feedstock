@@ -77,7 +77,8 @@ outputs:
       run:
         - python
         - {{ pin_subpackage("jupyterhub-base", exact=True) }}
-        - configurable-http-proxy *=*node12*
+        - configurable-http-proxy
+        - node >=12
     test:
       imports:
         - jupyterhub
