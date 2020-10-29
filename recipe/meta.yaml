@@ -1,4 +1,4 @@
-{% set version = "1.1.0" %}
+{% set version = "1.2.0" %}
 
 package:
   name: jupyterhub-feedstock
@@ -7,10 +7,10 @@ package:
 source:
   fn: jupyterhub-{{ version }}.tar.gz
   url: https://pypi.io/packages/source/j/jupyterhub/jupyterhub-{{ version }}.tar.gz
-  sha256: 852a70225a03abd631b36a207f3ffdf69326a0db4cef539825fde39ec1b713d7
+  sha256: fa3c2530fcb3330a95e5263191b411d61ae2ea7d32744b342d9db245a455edea
 
 build:
-  number: 5
+  number: 0
   skip: true  # [py<35]
 
 requirements:
