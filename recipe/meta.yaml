@@ -10,7 +10,7 @@ source:
   sha256: 4d24e064db10c1d070696c7a3dee55739a24db6990051aa296e708910d1b14b9
 
 build:
-  number: 0
+  number: 1
   skip: true  # [py<35]
 
 requirements:
@@ -34,7 +34,7 @@ outputs:
         - certipy >=0.1.2
         - entrypoints
         - jinja2
-        - jupyter_telemetry
+        - jupyter_telemetry >=0.1.0
         - oauthlib >=3.0
         - pamela  # [not win]
         - prometheus_client >=0.0.21
@@ -53,7 +53,10 @@ outputs:
         - jupyterhub.handlers
         - jupyterhub.tests
         - jupyterhub.app
+      requires:
+        - pip
       commands:
+        - pip check
         - python -m jupyterhub --help-all
 
   - name: jupyterhub-singleuser
