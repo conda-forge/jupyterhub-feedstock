@@ -30,11 +30,11 @@ outputs:
       run:
         - python
         - alembic
-        - async_generator >=1.8
+        - async_generator >=1.9
         - certipy >=0.1.2
         - entrypoints
         - jinja2
-        - jupyter_telemetry
+        - jupyter_telemetry >= 0.1.0
         - oauthlib >=3.0
         - pamela  # [not win]
         - prometheus_client >=0.0.21
@@ -43,7 +43,7 @@ outputs:
         - python-dateutil
         - requests
         - sqlalchemy >=1.1
-        - tornado >=5.0
+        - tornado >=5.1
         - traitlets >=4.3.2
 
     test:
