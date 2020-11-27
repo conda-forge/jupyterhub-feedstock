@@ -34,7 +34,7 @@ outputs:
         - certipy >=0.1.2
         - entrypoints
         - jinja2
-        - jupyter_telemetry >= 0.1.0
+        - jupyter_telemetry >=0.1.0
         - oauthlib >=3.0
         - pamela  # [not win]
         - prometheus_client >=0.0.21
