@@ -88,7 +88,7 @@ outputs:
 
 about:
   home: https://github.com/jupyterhub/jupyterhub
-  license: BSD 3-Clause
+  license: BSD-3-Clause
   license_file: COPYING.md
   summary: Multi-user server for Jupyter notebooks
 
