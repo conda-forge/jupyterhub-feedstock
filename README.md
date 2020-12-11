@@ -3,7 +3,7 @@ About jupyterhub-feedstock
 
 Home: https://github.com/jupyterhub/jupyterhub
 
-Package license: BSD 3-Clause
+Package license: BSD-3-Clause
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/jupyterhub-feedstock/blob/master/LICENSE.txt)
 
