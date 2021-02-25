@@ -340,5 +340,6 @@ Feedstock Maintainers
 
 * [@blink1073](https://github.com/blink1073/)
 * [@consideRatio](https://github.com/consideRatio/)
+* [@manics](https://github.com/manics/)
 * [@minrk](https://github.com/minrk/)
 

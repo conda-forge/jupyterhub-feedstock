@@ -10,7 +10,7 @@ source:
   sha256: 05ff701209c340c792cd103606c448c52ace772ece858380905ddd1a2136ee8e
 
 build:
-  number: 0
+  number: 1
   skip: true  # [py<36]
 
 requirements:
@@ -77,7 +77,7 @@ outputs:
       run:
         - python
         - {{ pin_subpackage("jupyterhub-base", exact=True) }}
-        - configurable-http-proxy
+        - configurable-http-proxy >=4
         - nodejs >=12
     test:
       imports:
@@ -97,3 +97,4 @@ extra:
     - minrk
     - blink1073
     - consideRatio
+    - manics
