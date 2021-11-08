@@ -8,6 +8,8 @@ source:
   fn: jupyterhub-{{ version }}.tar.gz
   url: https://pypi.io/packages/source/j/jupyterhub/jupyterhub-{{ version }}.tar.gz
   sha256: dc618f657c23ba46280e36257e50931806674ba0e9e6498afb091efc6226d69d
+  patches:
+    - 0001-always-use-relative-paths-in-data_files.patch
 
 build:
   number: 0
