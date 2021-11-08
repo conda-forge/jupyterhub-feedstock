@@ -24,7 +24,10 @@ requirements:
 outputs:
   - name: jupyterhub-base
     build:
-      script: python -m pip install . --no-deps -vv
+      # FIXME: 1.5.0 sdist has some absolute paths in .egg-info
+      script: |
+        rd /s /q jupyterhub.egg-info  # [win]
+        python -m pip install . --no-deps -vv
     requirements:
       host:
         - python
