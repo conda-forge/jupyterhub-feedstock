@@ -1,0 +1,32 @@
+From 69d658ccbab8d7b01585acd825a760d1c9e1b53a Mon Sep 17 00:00:00 2001
+From: Min RK <benjaminrk@gmail.com>
+Date: Mon, 8 Nov 2021 13:26:09 +0100
+Subject: [PATCH] always use relative paths in data_files
+
+instead of absolute paths for sources
+
+seems to have started failing on Windows
+---
+ setup.py | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
+
+diff --git a/setup.py b/setup.py
+index b338c647..828433f1 100755
+--- a/setup.py
++++ b/setup.py
+@@ -49,10 +49,9 @@ def get_data_files():
+     """Get data files in share/jupyter"""
+ 
+     data_files = []
+-    ntrim = len(here + os.path.sep)
+-
+     for (d, dirs, filenames) in os.walk(share_jupyterhub):
+-        data_files.append((d[ntrim:], [pjoin(d, f) for f in filenames]))
++        rel_d = os.path.relpath(d, here)
++        data_files.append((rel_d, [os.path.join(rel_d, f) for f in filenames]))
+     return data_files
+ 
+ 
+-- 
+2.33.1
+

@@ -1,4 +1,4 @@
-{% set version = "1.4.2" %}
+{% set version = "1.5.0" %}
 
 package:
   name: jupyterhub-feedstock
@@ -7,7 +7,9 @@ package:
 source:
   fn: jupyterhub-{{ version }}.tar.gz
   url: https://pypi.io/packages/source/j/jupyterhub/jupyterhub-{{ version }}.tar.gz
-  sha256: d72908b3063fed1d35a3aa793c4a7ded2c8c4016b38e0135b33af0be49a8fc21
+  sha256: dc618f657c23ba46280e36257e50931806674ba0e9e6498afb091efc6226d69d
+  patches:
+    - 0001-always-use-relative-paths-in-data_files.patch
 
 build:
   number: 0
@@ -22,7 +24,10 @@ requirements:
 outputs:
   - name: jupyterhub-base
     build:
-      script: python -m pip install . --no-deps -vv
+      # FIXME: 1.5.0 sdist has some absolute paths in .egg-info
+      script: |
+        rd /s /q jupyterhub.egg-info  # [win]
+        python -m pip install . --no-deps -vv
     requirements:
       host:
         - python
