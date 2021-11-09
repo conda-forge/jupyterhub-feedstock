@@ -1,4 +1,4 @@
-{% set version = "1.5.0" %}
+{% set version = "2.0.0" %}
 
 package:
   name: jupyterhub-feedstock
@@ -7,33 +7,31 @@ package:
 source:
   fn: jupyterhub-{{ version }}.tar.gz
   url: https://pypi.io/packages/source/j/jupyterhub/jupyterhub-{{ version }}.tar.gz
-  sha256: dc618f657c23ba46280e36257e50931806674ba0e9e6498afb091efc6226d69d
-  patches:
-    - 0001-always-use-relative-paths-in-data_files.patch
+  sha256: 1fcb312140c4a13aabf617cf1a356025401e121648940d1c683a6ee3a3809579
 
 build:
-  number: 1
-  skip: true  # [py<36]
+  number: 0
+  noarch: python
 
 requirements:
   host:
-    - python
+    - python >=3.6
+    - pip
   run:
-    - python
+    - python >=3.6
 
 outputs:
   - name: jupyterhub-base
     build:
-      # FIXME: 1.5.0 sdist has some absolute paths in .egg-info
+      noarch: python
       script: |
-        rd /s /q jupyterhub.egg-info  # [win]
         python -m pip install . --no-deps -vv
     requirements:
       host:
-        - python
+        - python >=3.6
         - pip
       run:
-        - python
+        - python >=3.6
         - alembic
         - async_generator >=1.9
         - certipy >=0.1.2
@@ -41,9 +39,9 @@ outputs:
         - jinja2 >=2.11.0
         - jupyter_telemetry >=0.1.0
         - oauthlib >=3.0
-        - pamela  # [not win]
+        - pamela
         - prometheus_client >=0.4.0
-        - psutil  # [win]
+        - psutil
         - pycurl
         - python-dateutil
         - requests
@@ -60,15 +58,19 @@ outputs:
         - jupyterhub.app
       commands:
         - python -m jupyterhub --help-all
+        - test -f $PREFIX/share/jupyterhub/templates/page.html
+        - test -f $PREFIX/share/jupyterhub/static/components/jquery/dist/jquery.min.js
+        - test -f $PREFIX/share/jupyterhub/static/css/style.min.css
+        - test -f $PREFIX/share/jupyterhub/static/js/home.js
 
   - name: jupyterhub-singleuser
+    build:
+      noarch: generic
     requirements:
-      host:
-        - python
       run:
-        - python
+        - python >=3.6
         - {{ pin_subpackage("jupyterhub-base", exact=True) }}
-        - notebook >=4
+        - jupyterlab >=3.1
     test:
       imports:
         - jupyterhub.singleuser
@@ -76,9 +78,9 @@ outputs:
         - python -m jupyterhub.singleuser --help-all
 
   - name: jupyterhub
+    build:
+      noarch: generic
     requirements:
-      host:
-        - python
       run:
         - python
         - {{ pin_subpackage("jupyterhub-base", exact=True) }}
