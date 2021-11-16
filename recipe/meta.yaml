@@ -12,7 +12,7 @@ source:
     - 0001-always-use-relative-paths-in-data_files.patch
 
 build:
-  number: 0
+  number: 1
   skip: true  # [py<36]
 
 requirements:
