@@ -5,12 +5,11 @@ package:
   version: {{ version }}
 
 source:
-  fn: jupyterhub-{{ version }}.tar.gz
   url: https://pypi.io/packages/source/j/jupyterhub/jupyterhub-{{ version }}.tar.gz
   sha256: 49709fd4048f2823b2abbc2cf4ed792991d1c26038cc45300644b0d284ed3165
 
 build:
-  number: 0
+  number: 1
   noarch: python
 
 requirements:
@@ -24,25 +23,25 @@ outputs:
   - name: jupyterhub-base
     build:
       noarch: python
-      script: |
-        python -m pip install . --no-deps -vv
+      script: {{ PYTHON }} -m pip install . --no-deps -vv
+      entry_points:
+        - jupyterhub = jupyterhub.app:main
+        - jupyterhub-singleuser = jupyterhub.singleuser:main
     requirements:
       host:
         - python >=3.6
         - pip
       run:
-        - python >=3.6
-        - alembic
+        - alembic >=1.4
         - async_generator >=1.9
         - certipy >=0.1.2
         - entrypoints
         - jinja2 >=2.11.0
         - jupyter_telemetry >=0.1.0
         - oauthlib >=3.0
+        - packaging
         - pamela
         - prometheus_client >=0.4.0
-        - psutil
-        - pycurl
         - python-dateutil
         - requests
         - sqlalchemy >=1.1
@@ -50,6 +49,8 @@ outputs:
         - traitlets >=4.3.2
 
     test:
+      requires:
+        - pip
       imports:
         - jupyterhub
         - jupyterhub.apihandlers
@@ -57,7 +58,8 @@ outputs:
         - jupyterhub.tests
         - jupyterhub.app
       commands:
-        - python -m jupyterhub --help-all
+        - pip check
+        - jupyterhub --help-all
         - test -f $PREFIX/share/jupyterhub/templates/page.html
         - test -f $PREFIX/share/jupyterhub/static/components/jquery/dist/jquery.min.js
         - test -f $PREFIX/share/jupyterhub/static/css/style.min.css
@@ -65,32 +67,42 @@ outputs:
 
   - name: jupyterhub-singleuser
     build:
-      noarch: generic
+      noarch: python
     requirements:
+      host:
+        - python >=3.6
       run:
         - python >=3.6
         - {{ pin_subpackage("jupyterhub-base", exact=True) }}
         - jupyterlab >=3.1
     test:
+      requires:
+        - pip
       imports:
         - jupyterhub.singleuser
       commands:
-        - python -m jupyterhub.singleuser --help-all
+        - pip check
+        - jupyterhub-singleuser --help-all
 
   - name: jupyterhub
     build:
-      noarch: generic
+      noarch: python
     requirements:
+      host:
+        - python >=3.6
       run:
-        - python
+        - python >=3.6
         - {{ pin_subpackage("jupyterhub-base", exact=True) }}
         - configurable-http-proxy >=4
         - nodejs >=12
     test:
+      requires:
+        - pip
       imports:
         - jupyterhub
       commands:
-        - python -m jupyterhub --help-all
+        - pip check
+        - jupyterhub --help-all
         - configurable-http-proxy --help
 
 about:
@@ -98,10 +110,13 @@ about:
   license: BSD-3-Clause
   license_file: COPYING.md
   summary: Multi-user server for Jupyter notebooks
+  doc_url: https://jupyterhub.readthedocs.io
 
 extra:
+  feedstock-name: jupyterhub-feedstock
   recipe-maintainers:
     - minrk
     - blink1073
     - consideRatio
     - manics
+    - bollwyvl
