@@ -42,7 +42,8 @@ outputs:
         - packaging
         - pamela
         - prometheus_client >=0.4.0
-        - pycurl  # undeclared extra, used preferentially
+        - psutil  # undeclared extra, used preferentially for logging
+        - pycurl  # undeclared extra, used preferentially for performance
         - python >=3.6
         - python-dateutil
         - requests
