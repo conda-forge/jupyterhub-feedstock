@@ -118,6 +118,7 @@ about:
 extra:
   feedstock-name: jupyterhub-feedstock
   recipe-maintainers:
+    - consideratio
     - minrk
     - blink1073
     - consideRatio
