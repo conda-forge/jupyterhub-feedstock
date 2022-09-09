@@ -72,9 +72,12 @@ outputs:
     build:
       noarch: python
     requirements:
+      host:
+        - python >=3.7
       run:
         - {{ pin_subpackage("jupyterhub-base", exact=True) }}
         - jupyterlab >=3.1
+        - python >=3.7
     test:
       requires:
         - pip
@@ -88,10 +91,13 @@ outputs:
     build:
       noarch: python
     requirements:
+      host:
+        - python >=3.7
       run:
         - {{ pin_subpackage("jupyterhub-base", exact=True) }}
         - configurable-http-proxy >=4
-        - nodejs >=12
+        - nodejs >=12,!=13.*,!=15.*,!=17.*,!=19.*
+        - python >=3.7
     test:
       requires:
         - pip
