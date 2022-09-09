@@ -12,13 +12,6 @@ build:
   number: 0
   noarch: python
 
-requirements:
-  host:
-    - python >=3.6
-    - pip
-  run:
-    - python >=3.6
-
 outputs:
   - name: jupyterhub-base
     build:
@@ -29,13 +22,13 @@ outputs:
         - jupyterhub-singleuser = jupyterhub.singleuser:main
     requirements:
       host:
-        - python >=3.6
+        - python >=3.7
         - pip
       run:
         - alembic >=1.4
         - async_generator >=1.9
         - certipy >=0.1.2
-        - entrypoints
+        - importlib_metadata >=3.6  # not actually required for Python >=3.10
         - jinja2 >=2.11.0
         - jupyter_telemetry >=0.1.0
         - oauthlib >=3.0
@@ -44,7 +37,7 @@ outputs:
         - prometheus_client >=0.4.0
         - psutil  # undeclared extra, used preferentially for logging
         - pycurl  # undeclared extra, used preferentially for performance
-        - python >=3.6
+        - python >=3.7
         - python-dateutil
         - requests
         - sqlalchemy >=1.1
@@ -72,10 +65,7 @@ outputs:
     build:
       noarch: python
     requirements:
-      host:
-        - python >=3.6
       run:
-        - python >=3.6
         - {{ pin_subpackage("jupyterhub-base", exact=True) }}
         - jupyterlab >=3.1
     test:
@@ -91,10 +81,7 @@ outputs:
     build:
       noarch: python
     requirements:
-      host:
-        - python >=3.6
       run:
-        - python >=3.6
         - {{ pin_subpackage("jupyterhub-base", exact=True) }}
         - configurable-http-proxy >=4
         - nodejs >=12
