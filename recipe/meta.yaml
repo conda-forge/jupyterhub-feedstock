@@ -96,7 +96,7 @@ outputs:
       run:
         - {{ pin_subpackage("jupyterhub-base", exact=True) }}
         - configurable-http-proxy >=4
-        - nodejs >=12,!=13.*,!=15.*,!=17.*,!=19.*
+        - nodejs >=12
         - python >=3.7
     test:
       requires:
