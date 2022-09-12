@@ -1,4 +1,4 @@
-{% set version = "2.3.1" %}
+{% set version = "3.0.0" %}
 
 package:
   name: jupyterhub-feedstock
@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/j/jupyterhub/jupyterhub-{{ version }}.tar.gz
-  sha256: f968f4f1392a9bb21e0fd6e1452bc925f7e3d2dc1f02efbe4afd63ecb9e81e0f
+  sha256: 05cdfebd800cf3e55566fb5b61110c5f64fed8ca3c56ef0142290baffbc7fb69
 
 build:
   number: 0
@@ -14,10 +14,10 @@ build:
 
 requirements:
   host:
-    - python >=3.6
+    - python >=3.7
     - pip
   run:
-    - python >=3.6
+    - python >=3.7
 
 outputs:
   - name: jupyterhub-base
@@ -29,13 +29,13 @@ outputs:
         - jupyterhub-singleuser = jupyterhub.singleuser:main
     requirements:
       host:
-        - python >=3.6
+        - python >=3.7
         - pip
       run:
         - alembic >=1.4
         - async_generator >=1.9
         - certipy >=0.1.2
-        - entrypoints
+        - importlib_metadata >=3.6  # not actually required for Python >=3.10
         - jinja2 >=2.11.0
         - jupyter_telemetry >=0.1.0
         - oauthlib >=3.0
@@ -44,7 +44,7 @@ outputs:
         - prometheus_client >=0.4.0
         - psutil  # undeclared extra, used preferentially for logging
         - pycurl  # undeclared extra, used preferentially for performance
-        - python >=3.6
+        - python >=3.7
         - python-dateutil
         - requests
         - sqlalchemy >=1.1
@@ -73,11 +73,11 @@ outputs:
       noarch: python
     requirements:
       host:
-        - python >=3.6
+        - python >=3.7
       run:
-        - python >=3.6
         - {{ pin_subpackage("jupyterhub-base", exact=True) }}
         - jupyterlab >=3.1
+        - python >=3.7
     test:
       requires:
         - pip
@@ -92,12 +92,12 @@ outputs:
       noarch: python
     requirements:
       host:
-        - python >=3.6
+        - python >=3.7
       run:
-        - python >=3.6
         - {{ pin_subpackage("jupyterhub-base", exact=True) }}
         - configurable-http-proxy >=4
         - nodejs >=12
+        - python >=3.7
     test:
       requires:
         - pip
