@@ -109,7 +109,7 @@ outputs:
         - {{ pin_subpackage("jupyterhub-base", exact=True) }}
         - configurable-http-proxy >=4
         - nodejs >=12
-        - psutil  # undeclared extra, used preferentially for logging
+        - psutil >=5.6.5  # undeclared extra, used preferentially for logging
         - pycurl  # undeclared extra, used preferentially for performance
         - python >=3.7
     test:
