@@ -36,7 +36,7 @@ outputs:
         - alembic >=1.4
         - async_generator >=1.9
         - certipy >=0.1.2
-        - importlib_metadata >=3.6  # not actually required for Python >=3.10
+        - importlib-metadata >=3.6  # not actually required for Python >=3.10
         - jinja2 >=2.11.0
         - jupyter_telemetry >=0.1.0
         - oauthlib >=3.0
@@ -122,7 +122,7 @@ outputs:
       commands:
         - pip check
         - jupyterhub --help-all
-        - configurable-http-proxy --help
+        - configurable-http-proxy --help  # [not win]
 
 about:
   home: https://github.com/jupyterhub/jupyterhub
