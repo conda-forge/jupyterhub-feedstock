@@ -44,7 +44,7 @@ outputs:
         {% if noarch_platform == "unix" %}
         - pamela
         {% else %}
-        - psutil >=5.6.5
+        - psutil
         {% endif %}
         - prometheus_client >=0.4.0
         - python >=3.7
@@ -53,6 +53,8 @@ outputs:
         - sqlalchemy >=1.1
         - tornado >=5.1
         - traitlets >=4.3.2
+      run_constrained:
+        - psutil >=5.6.5
 
     test:
       requires:
@@ -109,7 +111,7 @@ outputs:
         - {{ pin_subpackage("jupyterhub-base", exact=True) }}
         - configurable-http-proxy >=4
         - nodejs >=12
-        - psutil >=5.6.5  # undeclared extra, used preferentially for logging
+        - psutil  # undeclared extra, used preferentially for logging
         - pycurl  # undeclared extra, used preferentially for performance
         - python >=3.7
     test:
