@@ -32,6 +32,7 @@ outputs:
         - python >=3.7
         - pip
       run:
+        - __{{ noarch_platform }}
         - alembic >=1.4
         - async_generator >=1.9
         - certipy >=0.1.2
@@ -84,6 +85,7 @@ outputs:
       host:
         - python >=3.7
       run:
+        - __{{ noarch_platform }}
         - {{ pin_subpackage("jupyterhub-base", exact=True) }}
         - jupyterlab >=3.1
         - python >=3.7
@@ -103,6 +105,7 @@ outputs:
       host:
         - python >=3.7
       run:
+        - __{{ noarch_platform }}
         - {{ pin_subpackage("jupyterhub-base", exact=True) }}
         - configurable-http-proxy >=4
         - nodejs >=12
