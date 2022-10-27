@@ -40,7 +40,11 @@ outputs:
         - jupyter_telemetry >=0.1.0
         - oauthlib >=3.0
         - packaging
+        {% if noarch_platform == "unix" %}
         - pamela
+        {% else }
+        - psutil >=5.6.5
+        {% endif %}
         - prometheus_client >=0.4.0
         - python >=3.7
         - python-dateutil
@@ -61,10 +65,17 @@ outputs:
       commands:
         - pip check
         - jupyterhub --help-all
+        {% if noarch_platform == "unix" %}
         - test -f $PREFIX/share/jupyterhub/templates/page.html
         - test -f $PREFIX/share/jupyterhub/static/components/jquery/dist/jquery.min.js
         - test -f $PREFIX/share/jupyterhub/static/css/style.min.css
         - test -f $PREFIX/share/jupyterhub/static/js/home.js
+        {% else %}
+        - dir %PREFIX%\share\jupyterhub\templates\page.html || exit 1
+        - dir %PREFIX%\share\jupyterhub\static\components\jquery\dist\jquery.min.js || exit 1
+        - dir %PREFIX%\share\jupyterhub\static\css\style.min.css || exit 1
+        - dir %PREFIX%\share\jupyterhub\static\js\home.js || exit 1
+        {% endif %}
 
   - name: jupyterhub-singleuser
     build:
