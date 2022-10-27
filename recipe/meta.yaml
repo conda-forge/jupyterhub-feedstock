@@ -9,7 +9,7 @@ source:
   sha256: 05cdfebd800cf3e55566fb5b61110c5f64fed8ca3c56ef0142290baffbc7fb69
 
 build:
-  number: 0
+  number: 1
   noarch: python
 
 requirements:
@@ -42,8 +42,6 @@ outputs:
         - packaging
         - pamela
         - prometheus_client >=0.4.0
-        - psutil  # undeclared extra, used preferentially for logging
-        - pycurl  # undeclared extra, used preferentially for performance
         - python >=3.7
         - python-dateutil
         - requests
@@ -97,6 +95,8 @@ outputs:
         - {{ pin_subpackage("jupyterhub-base", exact=True) }}
         - configurable-http-proxy >=4
         - nodejs >=12
+        - psutil  # undeclared extra, used preferentially for logging
+        - pycurl  # undeclared extra, used preferentially for performance
         - python >=3.7
     test:
       requires:
