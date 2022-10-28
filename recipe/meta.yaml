@@ -9,7 +9,7 @@ source:
   sha256: 05cdfebd800cf3e55566fb5b61110c5f64fed8ca3c56ef0142290baffbc7fb69
 
 build:
-  number: 0
+  number: 1
   noarch: python
 
 requirements:
@@ -32,24 +32,29 @@ outputs:
         - python >=3.7
         - pip
       run:
+        - __{{ noarch_platform }}
         - alembic >=1.4
         - async_generator >=1.9
         - certipy >=0.1.2
-        - importlib_metadata >=3.6  # not actually required for Python >=3.10
+        - importlib-metadata >=3.6  # not actually required for Python >=3.10
         - jinja2 >=2.11.0
         - jupyter_telemetry >=0.1.0
         - oauthlib >=3.0
         - packaging
+        {% if noarch_platform == "unix" %}
         - pamela
+        {% else %}
+        - psutil
+        {% endif %}
         - prometheus_client >=0.4.0
-        - psutil  # undeclared extra, used preferentially for logging
-        - pycurl  # undeclared extra, used preferentially for performance
         - python >=3.7
         - python-dateutil
         - requests
         - sqlalchemy >=1.1
         - tornado >=5.1
         - traitlets >=4.3.2
+      run_constrained:
+        - psutil >=5.6.5
 
     test:
       requires:
@@ -63,10 +68,17 @@ outputs:
       commands:
         - pip check
         - jupyterhub --help-all
+        {% if noarch_platform == "unix" %}
         - test -f $PREFIX/share/jupyterhub/templates/page.html
         - test -f $PREFIX/share/jupyterhub/static/components/jquery/dist/jquery.min.js
         - test -f $PREFIX/share/jupyterhub/static/css/style.min.css
         - test -f $PREFIX/share/jupyterhub/static/js/home.js
+        {% else %}
+        - dir %PREFIX%\share\jupyterhub\templates\page.html || exit 1
+        - dir %PREFIX%\share\jupyterhub\static\components\jquery\dist\jquery.min.js || exit 1
+        - dir %PREFIX%\share\jupyterhub\static\css\style.min.css || exit 1
+        - dir %PREFIX%\share\jupyterhub\static\js\home.js || exit 1
+        {% endif %}
 
   - name: jupyterhub-singleuser
     build:
@@ -75,6 +87,7 @@ outputs:
       host:
         - python >=3.7
       run:
+        - __{{ noarch_platform }}
         - {{ pin_subpackage("jupyterhub-base", exact=True) }}
         - jupyterlab >=3.1
         - python >=3.7
@@ -94,9 +107,12 @@ outputs:
       host:
         - python >=3.7
       run:
+        - __{{ noarch_platform }}
         - {{ pin_subpackage("jupyterhub-base", exact=True) }}
         - configurable-http-proxy >=4
         - nodejs >=12
+        - psutil  # undeclared extra, used preferentially for logging
+        - pycurl  # undeclared extra, used preferentially for performance
         - python >=3.7
     test:
       requires:
@@ -106,7 +122,7 @@ outputs:
       commands:
         - pip check
         - jupyterhub --help-all
-        - configurable-http-proxy --help
+        - configurable-http-proxy --help  # [not win]
 
 about:
   home: https://github.com/jupyterhub/jupyterhub
