@@ -1,4 +1,4 @@
-{% set version = "3.1.1" %}
+{% set version = "4.0.0" %}
 
 package:
   name: jupyterhub-feedstock
@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/j/jupyterhub/jupyterhub-{{ version }}.tar.gz
-  sha256: bfdbc55d7cd29ed2b2c84d2fc7943ad13efdfc4a77740519c5dad1079ff75953
+  sha256: 2cab2996e49a7d2b70c0bb580a992e442059483e0af18af061a29ac82b14a867
 
 build:
   number: 0
@@ -50,7 +50,7 @@ outputs:
         - python >=3.7
         - python-dateutil
         - requests
-        - sqlalchemy >=1.1
+        - sqlalchemy >=1.4
         - tornado >=5.1
         - traitlets >=4.3.2
       run_constrained:
