@@ -132,7 +132,7 @@ about:
   doc_url: https://jupyterhub.readthedocs.io
 
 extra:
-  feedstock-name: jupyterhub-feedstock
+  feedstock-name: jupyterhub
   recipe-maintainers:
     - minrk
     - blink1073
