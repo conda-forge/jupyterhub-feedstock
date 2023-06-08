@@ -1,4 +1,4 @@
-{% set version = "4.0.0" %}
+{% set version = "4.0.1" %}
 
 package:
   name: jupyterhub-feedstock
@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/j/jupyterhub/jupyterhub-{{ version }}.tar.gz
-  sha256: 2cab2996e49a7d2b70c0bb580a992e442059483e0af18af061a29ac82b14a867
+  sha256: 8e283ff59e5c4016712077d2549ed74acd915a32836fe00218678a8781bd7ede
 
 build:
   number: 0
