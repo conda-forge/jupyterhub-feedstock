@@ -1,4 +1,4 @@
-{% set version = "4.1.5" %}
+{% set version = "5.0.0" %}
 
 package:
   name: jupyterhub-feedstock
@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/j/jupyterhub/jupyterhub-{{ version }}.tar.gz
-  sha256: 63ba1fc718436c151946a58a3b403ec4fe8b3f624fb195bc1d8e70c39b33e194
+  sha256: 62847b38b1a4f4f6ffa0f5f355f4114a861b16bc45de55a0fb82df428da43b75
 
 build:
   number: 0
@@ -14,10 +14,10 @@ build:
 
 requirements:
   host:
-    - python >=3.7
+    - python >=3.8
     - pip
   run:
-    - python >=3.7
+    - python >=3.8
 
 outputs:
   - name: jupyterhub-base
@@ -29,16 +29,16 @@ outputs:
         - jupyterhub-singleuser = jupyterhub.singleuser:main
     requirements:
       host:
-        - python >=3.7
+        - python >=3.8
         - pip
       run:
         - __{{ noarch_platform }}
         - alembic >=1.4
-        - async_generator >=1.9
+        - async_generator >=1.9  # not actually required for Python >=3.10
         - certipy >=0.1.2
         - importlib-metadata >=3.6  # not actually required for Python >=3.10
         - jinja2 >=2.11.0
-        - jupyter_telemetry >=0.1.0
+        - jupyter_events
         - oauthlib >=3.0
         - packaging
         {% if noarch_platform == "unix" %}
@@ -46,11 +46,12 @@ outputs:
         {% else %}
         - psutil
         {% endif %}
-        - prometheus_client >=0.4.0
-        - python >=3.7
+        - prometheus_client >=0.5.0
+        - pydantic >=2
+        - python >=3.8
         - python-dateutil
         - requests
-        - sqlalchemy >=1.4
+        - sqlalchemy >=1.4.1
         - tornado >=5.1
         - traitlets >=4.3.2
       run_constrained:
@@ -85,12 +86,12 @@ outputs:
       noarch: python
     requirements:
       host:
-        - python >=3.7
+        - python >=3.8
       run:
         - __{{ noarch_platform }}
         - {{ pin_subpackage("jupyterhub-base", exact=True) }}
         - jupyterlab >=3.1
-        - python >=3.7
+        - python >=3.8
     test:
       requires:
         - pip
@@ -105,7 +106,7 @@ outputs:
       noarch: python
     requirements:
       host:
-        - python >=3.7
+        - python >=3.8
       run:
         - __{{ noarch_platform }}
         - {{ pin_subpackage("jupyterhub-base", exact=True) }}
@@ -113,7 +114,7 @@ outputs:
         - nodejs >=12
         - psutil  # undeclared extra, used preferentially for logging
         - pycurl  # undeclared extra, used preferentially for performance
-        - python >=3.7
+        - python >=3.8
     test:
       requires:
         - pip
