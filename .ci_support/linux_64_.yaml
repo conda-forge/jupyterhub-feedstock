@@ -1,9 +1,5 @@
-c_stdlib:
-- sysroot
-c_stdlib_version:
-- '2.12'
 cdt_name:
-- cos6
+- cos7
 channel_sources:
 - conda-forge
 channel_targets:
@@ -12,6 +8,3 @@ docker_image:
 - quay.io/condaforge/linux-anvil-cos7-x86_64
 noarch_platform:
 - unix
-zip_keys:
-- - c_stdlib_version
-  - cdt_name
