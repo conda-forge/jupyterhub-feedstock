@@ -16,7 +16,7 @@ outputs:
   - name: jupyterhub-base
     build:
       noarch: python
-      script: {{ PYTHON }} -m pip install . --no-deps -vv
+      script: python -m pip install . --no-deps -vv
       entry_points:
         - jupyterhub = jupyterhub.app:main
         - jupyterhub-singleuser = jupyterhub.singleuser:main
