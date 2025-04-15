@@ -73,10 +73,16 @@ outputs:
             - jupyterhub.apihandlers
             - jupyterhub.handlers
             - jupyterhub.app
-      - script:
-          - jupyterhub --help-all
+      - requirements:
+          run:
+            - pip
+            - python ${{ python_min }}.*
+        script:
+          - python -m pip list --format=freeze
+          - python -m pip list --format=freeze | python -c "import sys; assert 'jupyterhub==${{ version }}' in sys.stdin.read()"
           - jupyterhub --version
           - jupyterhub --version | python -c "import sys; assert sys.stdin.read().strip() == '${{ version }}'"
+          - jupyterhub --help-all
           - if: noarch_platform == "unix"
             then:
               - test -f $PREFIX/share/jupyterhub/templates/page.html
@@ -106,8 +112,11 @@ outputs:
           python_version:
             - ${{ python_min }}.*
             - ${{ python_check_max }}.*
-      - script:
-        - jupyterhub-singleuser --help-all
+      - requirements:
+          run:
+            - python ${{ python_min }}.*
+        script:
+          - jupyterhub-singleuser --help-all
 
   - package:
       name: jupyterhub
@@ -120,8 +129,8 @@ outputs:
         - ${{ pin_subpackage("jupyterhub-base", exact=True) }}
         - configurable-http-proxy >=4
         - nodejs >=12
-        - psutil  # undeclared extra, used preferentially for logging
-        - pycurl  # undeclared extra, used preferentially for performance
+        - psutil # undeclared extra, used preferentially for logging
+        - pycurl # undeclared extra, used preferentially for performance
     tests:
       - python:
           imports: jupyterhub
@@ -130,10 +139,10 @@ outputs:
             - ${{ python_min }}.*
             - ${{ python_check_max }}.*
       - script:
-        - jupyterhub --help-all
-        - if: noarch_platform == "unix"
-          then:
-            - configurable-http-proxy --help
+          - jupyterhub --help-all
+          - if: noarch_platform == "unix"
+            then:
+              - configurable-http-proxy --help
 
 about:
   homepage: https://hub.jupyter.org
