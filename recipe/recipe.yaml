@@ -147,7 +147,13 @@ outputs:
 about:
   homepage: https://hub.jupyter.org
   license: BSD-3-Clause
-  license_file: LICENSE
+  license_file:
+    - LICENSE
+    - share/jupyterhub/static/components/@fortawesome/fontawesome-free/LICENSE.txt
+    - share/jupyterhub/static/components/bootstrap/LICENSE
+    - share/jupyterhub/static/components/jquery/LICENSE.txt
+    - share/jupyterhub/static/components/moment/LICENSE
+    - share/jupyterhub/static/js/admin-react.js.LICENSE.txt
   summary: A multi-user server for Jupyter notebooks
   repository: https://github.com/jupyterhub/jupyterhub
   documentation: https://jupyterhub.readthedocs.io
