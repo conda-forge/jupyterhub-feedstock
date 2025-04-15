@@ -7,9 +7,10 @@ context:
 
 recipe:
   name: jupyterhub
+  version: ${{ version }}
 
 source:
-  url: https://pypi.org/packages/source/j/jupyterhub/jupyterhub-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/j/jupyterhub/jupyterhub-${{ version }}.tar.gz
   sha256: 57834b36e7db8f26f21d9aeba1e1d5b8c91b9ff14a7c144097178977aa1e723f
 
 build:
@@ -19,6 +20,7 @@ build:
 outputs:
   - package:
       name: jupyterhub-base
+      version: ${{ version }}
     build:
       noarch: python
       script:
@@ -87,11 +89,12 @@ outputs:
 
   - package:
       name: jupyterhub-singleuser
+      version: ${{ version }}
     build:
       noarch: generic
     requirements:
       run:
-        - __{{ noarch_platform }}
+        - __${{ noarch_platform }}
         - ${{ pin_subpackage("jupyterhub-base", exact=True) }}
         - jupyterlab >=3.1
     tests:
@@ -106,11 +109,12 @@ outputs:
 
   - package:
       name: jupyterhub
+      version: ${{ version }}
     build:
       noarch: generic
     requirements:
       run:
-        - __{{ noarch_platform }}
+        - __${{ noarch_platform }}
         - ${{ pin_subpackage("jupyterhub-base", exact=True) }}
         - configurable-http-proxy >=4
         - nodejs >=12

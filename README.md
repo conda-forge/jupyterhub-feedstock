@@ -3,13 +3,15 @@ About jupyterhub-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/jupyterhub-feedstock/blob/main/LICENSE.txt)
 
-Home: https://github.com/jupyterhub/jupyterhub
+Home: https://hub.jupyter.org/
 
 Package license: BSD-3-Clause
 
-Summary: Multi-user server for Jupyter notebooks
+Summary: A multi-user server for Jupyter notebooks
 
-Documentation: https://jupyterhub.readthedocs.io
+Development: https://github.com/jupyterhub/jupyterhub
+
+Documentation: https://jupyterhub.readthedocs.io/
 
 Current build status
 ====================
