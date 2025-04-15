@@ -75,6 +75,8 @@ outputs:
             - jupyterhub.app
       - script:
           - jupyterhub --help-all
+          - jupyterhub --version
+          - jupyterhub --version | python -c "import sys; assert sys.stdin.read().strip() == '${{ version }}'"
           - if: noarch_platform == "unix"
             then:
               - test -f $PREFIX/share/jupyterhub/templates/page.html
@@ -122,7 +124,7 @@ outputs:
         - pycurl  # undeclared extra, used preferentially for performance
     tests:
       - python:
-          imports: jupyterhub.singleuser
+          imports: jupyterhub
           pip_check: true
           python_version:
             - ${{ python_min }}.*
