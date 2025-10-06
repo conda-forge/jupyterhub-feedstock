@@ -5,4 +5,4 @@ channel_targets:
 noarch_platform:
 - win
 python_min:
-- '3.9'
+- '3.10'
