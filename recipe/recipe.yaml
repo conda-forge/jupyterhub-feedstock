@@ -2,7 +2,7 @@
 schema_version: 1
 
 context:
-  version: 5.3.0
+  version: 5.4.0
   python_check_max: 3.13
 
 recipe:
@@ -11,7 +11,7 @@ recipe:
 
 source:
   url: https://pypi.org/packages/source/j/jupyterhub/jupyterhub-${{ version }}.tar.gz
-  sha256: 57834b36e7db8f26f21d9aeba1e1d5b8c91b9ff14a7c144097178977aa1e723f
+  sha256: ea55a559c58b57fe0a38302a7d8980f739cbb46199250a06fd1ede64bb2e6a2a
 
 build:
   number: 0
