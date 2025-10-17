@@ -2,8 +2,8 @@
 schema_version: 1
 
 context:
-  version: 5.4.0
-  python_check_max: 3.13
+  version: "5.4.1"
+  python_check_max: 3.14
 
 recipe:
   name: jupyterhub
@@ -11,7 +11,7 @@ recipe:
 
 source:
   url: https://pypi.org/packages/source/j/jupyterhub/jupyterhub-${{ version }}.tar.gz
-  sha256: ea55a559c58b57fe0a38302a7d8980f739cbb46199250a06fd1ede64bb2e6a2a
+  sha256: 1686dff0d012528cb193c9fa4afa93c256e22b2f061b73a73dd8be0260a171bb
 
 build:
   number: 0
@@ -38,10 +38,8 @@ outputs:
       run:
         - __${{ noarch_platform }}
         - alembic >=1.4
-        - async_generator >=1.9 # not actually required for Python >=3.10
         - certipy >=0.1.2
         - idna
-        - importlib-metadata >=3.6 # not actually required for Python >=3.10
         - jinja2 >=2.11.0
         - jupyter_events
         - oauthlib >=3.0
@@ -63,6 +61,12 @@ outputs:
         - psutil >=5.6.5
         - pamela >=1.1.0
     tests:
+      - package_contents:
+          files:
+            - share/jupyterhub/templates/page.html
+            - share/jupyterhub/static/components/jquery/dist/jquery.min.js
+            - share/jupyterhub/static/css/style.min.css
+            - share/jupyterhub/static/js/home.js
       - python:
           pip_check: true
           python_version:
@@ -83,17 +87,6 @@ outputs:
           - jupyterhub --version
           - jupyterhub --version | python -c "import sys; assert sys.stdin.read().strip() == '${{ version }}'"
           - jupyterhub --help-all
-          - if: noarch_platform == "unix"
-            then:
-              - test -f $PREFIX/share/jupyterhub/templates/page.html
-              - test -f $PREFIX/share/jupyterhub/static/components/jquery/dist/jquery.min.js
-              - test -f $PREFIX/share/jupyterhub/static/css/style.min.css
-              - test -f $PREFIX/share/jupyterhub/static/js/home.js
-            else:
-              - dir %PREFIX%\share\jupyterhub\templates\page.html                         || exit 1
-              - dir %PREFIX%\share\jupyterhub\static\components\jquery\dist\jquery.min.js || exit 1
-              - dir %PREFIX%\share\jupyterhub\static\css\style.min.css                    || exit 1
-              - dir %PREFIX%\share\jupyterhub\static\js\home.js                           || exit 1
 
   - package:
       name: jupyterhub-singleuser
