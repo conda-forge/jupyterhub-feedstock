@@ -2,7 +2,7 @@ azure:
   store_build_artifacts: true
 bot:
   automerge: true
-  inspection: hint-all
+  inspection: hint-grayskull
 conda_build:
   pkg_format: "2"
 conda_build_tool: rattler-build
