@@ -60,6 +60,10 @@ outputs:
       run_constraints:
         - psutil >=5.6.5
         - pamela >=1.1.0
+        - if: noarch_platform == "win"
+          then:
+            # see: https://github.com/conda-forge/openssl-feedstock/issues/237
+            - openssl !=3.6.3 *_0
     tests:
       - package_contents:
           files:
