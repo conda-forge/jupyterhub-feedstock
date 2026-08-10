@@ -2,7 +2,7 @@
 schema_version: 1
 
 context:
-  version: "5.5.0"
+  version: "5.5.1"
   python_check_max: "3.14"
   # workaround https://github.com/conda-forge/openssl-feedstock/issues/237
   # python 3.10,3.11 are (temporarily) broken by openssl on Windows
@@ -14,7 +14,7 @@ recipe:
 
 source:
   url: https://pypi.org/packages/source/j/jupyterhub/jupyterhub-${{ version }}.tar.gz
-  sha256: 9b61bcb8175d6c6246f798581cdcac512759865bf53698f7832416f51735d0be
+  sha256: 07f2e4a891cd767203b66b00a8f113d7033ddfc109aaa0ee43e70ae24f72659e
 
 build:
   number: 0
