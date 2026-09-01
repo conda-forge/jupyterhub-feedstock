@@ -2,11 +2,8 @@
 schema_version: 1
 
 context:
-  version: "5.5.2"
+  version: "6.0.0"
   python_check_max: "3.14"
-  # workaround https://github.com/conda-forge/openssl-feedstock/issues/237
-  # python 3.10,3.11 are (temporarily) broken by openssl on Windows
-  python_min_test: ${{ python_min if not win else "3.12" }}
 
 recipe:
   name: jupyterhub
@@ -14,7 +11,7 @@ recipe:
 
 source:
   url: https://pypi.org/packages/source/j/jupyterhub/jupyterhub-${{ version }}.tar.gz
-  sha256: e4860ac6b5d899f7b37a927f984d1fec0c5fbc196fe20bc4a75be9b7212510c2
+  sha256: 98393e346f0420bbb56ecbaf5fcd615c9b5320707e71c5a7d9309a649867ce04
 
 build:
   number: 0
@@ -40,11 +37,13 @@ outputs:
         - setuptools-scm
       run:
         - __${{ noarch_platform }}
+        - aiodns
+        - aiohttp
         - alembic >=1.4
         - certipy >=0.1.2
         - idna
         - jinja2 >=2.11.0
-        - jupyter_events
+        - jupyter_events >=0.11.0
         - oauthlib >=3.0
         - packaging
         - prometheus_client >=0.5.0
@@ -53,8 +52,8 @@ outputs:
         - python-dateutil
         - requests
         - sqlalchemy >=1.4.1
-        - tornado >=5.1
-        - traitlets >=4.3.2
+        - tornado >=6.5
+        - traitlets >=5.4
         - if: noarch_platform == "unix"
           then:
             - pamela
@@ -73,7 +72,7 @@ outputs:
       - python:
           pip_check: true
           python_version:
-            - ${{ python_min_test }}.*
+            - ${{ python_min }}.*
             - ${{ python_check_max }}.*
           imports:
             - jupyterhub
@@ -83,7 +82,7 @@ outputs:
       - requirements:
           run:
             - pip
-            - python ${{ python_min_test }}.*
+            - python ${{ python_min }}.*
         script:
           - python -m pip list --format=freeze
           - python -m pip list --format=freeze | python -c "import sys; assert 'jupyterhub==${{ version }}' in sys.stdin.read()"
@@ -106,11 +105,11 @@ outputs:
           imports: jupyterhub.singleuser
           pip_check: true
           python_version:
-            - ${{ python_min_test }}.*
+            - ${{ python_min }}.*
             - ${{ python_check_max }}.*
       - requirements:
           run:
-            - python ${{ python_min_test }}.*
+            - python ${{ python_min }}.*
         script:
           - jupyterhub-singleuser --help-all
 
@@ -126,13 +125,12 @@ outputs:
         - configurable-http-proxy >=4
         - nodejs >=12
         - psutil # undeclared extra, used preferentially for logging
-        - pycurl # undeclared extra, used preferentially for performance
     tests:
       - python:
           imports: jupyterhub
           pip_check: true
           python_version:
-            - ${{ python_min_test }}.*
+            - ${{ python_min }}.*
             - ${{ python_check_max }}.*
       - script:
           - jupyterhub --help-all
