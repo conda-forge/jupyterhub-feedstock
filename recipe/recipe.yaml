@@ -4,9 +4,6 @@ schema_version: 1
 context:
   version: "6.0.0"
   python_check_max: "3.14"
-  # workaround https://github.com/conda-forge/openssl-feedstock/issues/237
-  # python 3.10,3.11 are (temporarily) broken by openssl on Windows
-  python_min_test: ${{ python_min if not win else "3.12" }}
 
 recipe:
   name: jupyterhub
@@ -75,7 +72,7 @@ outputs:
       - python:
           pip_check: true
           python_version:
-            - ${{ python_min_test }}.*
+            - ${{ python_min }}.*
             - ${{ python_check_max }}.*
           imports:
             - jupyterhub
@@ -85,7 +82,7 @@ outputs:
       - requirements:
           run:
             - pip
-            - python ${{ python_min_test }}.*
+            - python ${{ python_min }}.*
         script:
           - python -m pip list --format=freeze
           - python -m pip list --format=freeze | python -c "import sys; assert 'jupyterhub==${{ version }}' in sys.stdin.read()"
@@ -108,11 +105,11 @@ outputs:
           imports: jupyterhub.singleuser
           pip_check: true
           python_version:
-            - ${{ python_min_test }}.*
+            - ${{ python_min }}.*
             - ${{ python_check_max }}.*
       - requirements:
           run:
-            - python ${{ python_min_test }}.*
+            - python ${{ python_min }}.*
         script:
           - jupyterhub-singleuser --help-all
 
@@ -133,7 +130,7 @@ outputs:
           imports: jupyterhub
           pip_check: true
           python_version:
-            - ${{ python_min_test }}.*
+            - ${{ python_min }}.*
             - ${{ python_check_max }}.*
       - script:
           - jupyterhub --help-all
