@@ -2,7 +2,7 @@
 schema_version: 1
 
 context:
-  version: "6.0.0"
+  version: "6.0.1"
   python_check_max: "3.14"
 
 recipe:
@@ -11,7 +11,7 @@ recipe:
 
 source:
   url: https://pypi.org/packages/source/j/jupyterhub/jupyterhub-${{ version }}.tar.gz
-  sha256: 98393e346f0420bbb56ecbaf5fcd615c9b5320707e71c5a7d9309a649867ce04
+  sha256: bafec2f3cfd69cb8b0761986db58ae6d8389fc65a33b2f5ff913276a0300288d
 
 build:
   number: 0
